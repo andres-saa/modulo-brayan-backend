@@ -7,6 +7,10 @@ class Product_schema_post(BaseModel):
     product_description:str
     product_purchase_price:int
     product_selling_price:int
-    
+    unit_of_measure:str
+    provider_id:int
+    category_id:int
+
+
 
 

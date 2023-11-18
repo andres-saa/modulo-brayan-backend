@@ -1,4 +1,6 @@
-from sqlalchemy import create_engine,MetaData
+# config/db.py
+
+from sqlalchemy import create_engine, MetaData
 from dotenv import load_dotenv
 import os
 
@@ -19,18 +21,8 @@ DATABASE_URL = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NA
 engine = create_engine(DATABASE_URL, echo=True)
 
 meta = MetaData()
+
+# Asociar el engine con la MetaData al llamar create_all
+meta.create_all(bind=engine)
+
 conn = engine.connect()
-# Puedes realizar operaciones de SQLAlchemy usando este engine
-# Por ejemplo, puedes crear una tabla
-# from sqlalchemy import Table, Column, Integer, String, MetaData
-
-# metadata = MetaData()
-
-# users = Table('users', metadata,
-#     Column('id', Integer, primary_key=True),
-#     Column('name', String),
-#     Column('age', Integer),
-# )
-
-# # Crea la tabla en la base de datos (si no existe)
-# metadata.create_all(engine)
